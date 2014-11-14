@@ -21,5 +21,11 @@ describe PostsController do
       get :show, id: post.id
       expect(response.status).to eq 200
     end
+
+    it 'is successful with a mock' do
+      expect(Post).to receive(:find).with("1").and_return(double(Post))
+      get :show, id: 1
+      expect(response.status).to eq 200
+    end
   end
 end

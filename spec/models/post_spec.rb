@@ -10,6 +10,10 @@ describe Post do
       expect(Post.new.valid?).to eq false
     end
 
+    it 'user_id must be present' do
+      expect(Post.new(user_id: nil).valid?).to eq false
+    end
+
     it 'body is fewer than 141 characters' do
       expect(Post.new(body: "a" * 141).valid?).to eq false
     end
@@ -17,5 +21,6 @@ describe Post do
     it 'body doesnt contain html' do
       expect(Post.new(body: "<script>").valid?).to eq false
     end
+
   end
 end
